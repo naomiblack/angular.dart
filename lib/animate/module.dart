@@ -2,30 +2,33 @@
  * CSS animation and DOM lifecycle management for AngularDart apps.
  *
  * The [angular.animate](#angular/angular-animate) library makes it easier to build animations
- * that affect the lifecycle of DOM elements. A useful example of this is animating the
- * removal of an element from the DOM. In order to do this ideally the
- * operation should immediatly execute and manipulate the data model,
- * and the framework should handle the actual remove of the DOM element once
- * the animation complets. This ensures that the logic and model of the
- * application is seperated so that the state of the model can be reasoned
- * about without having to wory about future modifications of the model.
- * This library uses computed css styles to calculate the total duration
+ * that affect the lifecycle of DOM elements.
+ *
+ *
+ * This library uses computed CSS styles to calculate the total duration
  * of an animation and handles the addition, removal, and modification of DOM
- * elements for block level directives such as `ng-if`, `ng-repeat`,
+ * elements for block level directives such as [ng-if], `ng-repeat`,
  * `ng-hide`, and more.
  *
- * To use, install the NgAnimateModule into your main module:
+ * To use, import the animation library and install the NgAnimateModule into your main module:
  *
- *     var module = new Module()
- *       ..install(new NgAnimateModule());
+ *     import 'package:angular/angular.dart';
+ *     import 'package:angular/animate/module.dart';
  *
- * Once the module has been installed, all block level DOM manipulations will
- * be routed through the [CssAnimate] class instead of the
- * default [NgAnimate] implementation. This will, in turn,
+ *     main() {
+ *      var module = new Module()
+ *         ..install(new NgAnimateModule());
+ *
+ *      ...
+ *     }
+ *
+ * Once the module has been installed, all block-level DOM manipulations are
+ * routed through the [CssAnimate] class instead of the
+ * default [NgAnimate](#angular/angular.NgAnimate) implementation. This will, in turn,
  * perform the tracking, manipulation, and computation for animations.
  *
- * As an example of how this works, lets walk through what happens whan an
- * element is added to the DOM. The [CssAnimate] implementation will add the
+ * As an example of how this works, lets walk through what happens when an
+ * element is added to the DOM. The [CssAnimate] implementation adds the
  * `.ng-enter` class to new DOM elements when they are inserted into the DOM
  * by a directive and will read the computed style. If there is a
  * transition or keyframe animation, that animation duration will be read,
